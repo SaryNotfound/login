@@ -34,6 +34,10 @@ npm install
 npm run dev
 ```
 
+## Repositorio
+
+El proyecto está alojado en: [GitHub](https://github.com/SaryNotfound/login)
+
 ## Estructura del proyecto
 
 ```
