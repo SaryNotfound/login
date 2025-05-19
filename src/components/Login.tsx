@@ -1,10 +1,15 @@
 // src/components/Login.tsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import { loginUser } from '../services/authService';
+
+// Este componente maneja el formulario de inicio de sesión
+// y la interacción con el servicio de autenticación.
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();  // Añadimos esto
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -39,19 +44,27 @@ const Login: React.FC = () => {
   // Manejar envío del formulario
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setErrorMessage('');
+    setErrorMessage(''); // Limpiamos cualquier mensaje de error previo
 
-    if (!isValid) return;
+    if (!isValid) {
+      setErrorMessage('Por favor, completa los campos correctamente.');
+      return;
+    }
 
     try {
+      // Llamamos al servicio de autenticación con las credenciales ingresadas
       const data = await loginUser(email, password);
       console.log('Login exitoso:', data);
-      // Aquí puedes guardar el token, por ejemplo en localStorage
+
+      // Guardamos el token simulado en localStorage
       localStorage.setItem('token', data.token);
-      // Redirigir a Home
+
+      // Actualizamos el estado de autenticación y redirigimos al usuario
+      login();
       navigate('/home');
     } catch (error: any) {
-      setErrorMessage(error.message || 'Error al iniciar sesión');
+      console.error('Error detallado:', error);
+      setErrorMessage(error.message || 'Error al iniciar sesión'); // Mostramos el mensaje de error
     }
   };
 

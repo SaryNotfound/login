@@ -4,10 +4,11 @@ Esta es una aplicación de login desarrollada con React, TypeScript y Tailwind C
 
 ## Características
 
-- Autenticación de usuarios
-- Rutas protegidas
-- Validación de formularios
-- Diseño responsive
+- Autenticación de usuarios con validación manual de credenciales.
+- Rutas protegidas con React Router.
+- Validación de formularios en tiempo real.
+- Diseño responsive con Tailwind CSS.
+- Simulación de un backend utilizando JSONPlaceholder.
 
 ## Tecnologías utilizadas
 
@@ -44,15 +45,22 @@ El proyecto está alojado en: [GitHub](https://github.com/SaryNotfound/login)
 my-login-app/
 ├── src/
 │   ├── components/
-│   │   ├── Login/
-│   │   └── ProtectedRoute/
+│   │   ├── Login.tsx
+│   │   └── ProtectedRoute.tsx
 │   ├── context/
 │   │   └── AuthContext.tsx
 │   ├── pages/
-│   │   └── Home/
+│   │   └── Home.tsx
 │   ├── services/
 │   │   └── authService.ts
 │   └── App.tsx
 ├── public/
 └── package.json
 ```
+
+## Notas
+
+- Las credenciales válidas para el inicio de sesión son:
+  - **Email**: `eve.holt@reqres.in`
+  - **Password**: `cityslicka`
+- Si las credenciales no son correctas, se mostrará un mensaje de error en el formulario.
